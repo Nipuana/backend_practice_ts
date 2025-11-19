@@ -4,6 +4,6 @@ import { BookController } from "../controllers/book.controller"
 
 const router : Router =Router()
 const bookController = new BookController()
-router.get('/getBook', bookController.getbooks)
+router.get('/getBook', bookController.getBooks)
 
 export default router;
