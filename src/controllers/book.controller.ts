@@ -5,17 +5,12 @@ import { Book } from "../types/book.type"
 import { BookService } from "../services/book.service";
 //Service implementation is to be used in controller
 
-
 let bookService = new BookService()
-// export type Book={
-//     id:string,title:string,date?:string
-// }
-
 
 export class BookController {
     createBook(req:Request,res:Response){
-
-        const parsedBook=createBookDTO.safeParse(req.body)
+        try{
+             const parsedBook=createBookDTO.safeParse(req.body)
         // Auto Validation
         if(!parsedBook.success){
             return res.status(400).json({errors: parsedBook.error})
@@ -24,6 +19,10 @@ export class BookController {
 
         const newBook: Book =bookService.createBook({id,title}) 
         return res.status(201).json(newBook)
+
+        }catch(error:Error|any){
+            return res.status(500).send(error.message ?? "Internal Server Error")
+        }
     }
    
     getBooks=(req:Request,res:Response)=>{
