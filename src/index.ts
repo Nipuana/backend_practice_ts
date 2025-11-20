@@ -9,11 +9,7 @@ app.get('/',(req:Request,res:Response)=>{
 });
 
 
-app.get('/api/books',(req:Request,res:Response)=>
-{
-    const books=[{id:'0-1',name:"Aauish"}]
-    return res.status(200).json(books)
-})
+
 app.use('/api/books',bookRoutes)
 
 app.listen(PORT,()=>{

@@ -1,22 +1,13 @@
 import {Request,Response} from "express"
-import {z} from 'zod'
+import { z } from "zod";
+import { createBookDTO } from "../dtos/book.dtos"
+import { Book } from "../types/book.type"
 
-export const BookSchema=z.object({
-    id:z.string().min(1,{message:"ID is required"}),
-    title:z.string().min(1,{message:"Title is required"}),
-    date:z.string().optional()
-})
 
-export type Book = z.infer<typeof BookSchema>
 
 // export type Book={
 //     id:string,title:string,date?:string
 // }
-
-//DTO-Data Transfer Object
-//Inpu/Output Structure
-export const createBookDTO=BookSchema.pick({id:true,title:true})
-export type createBookDTO= z.infer<typeof createBookDTO>
 
 let  books:Book[]=[
     {id:'0-1',title:"Aauish"},
@@ -32,12 +23,17 @@ export class BookController {
             return res.status(400).json({errors: parsedBook.error})
         }
         const {id,title}= req.body //destructure
+        
+        
         // if(!title){
         //     return res.status(400).json({message:"Title is required"})
         // }
         // if(!id){
         //     return res.status(400).json({message:"ID is required"})
         // }
+        
+        
+        
         const checkId: boolean = books.some((book)=>book.id===id)
         if(checkId){
             return res.status(409).json({message:"Book with this ID already exists"})
