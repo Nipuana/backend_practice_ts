@@ -40,4 +40,9 @@ export class BookService{
 
         return response;
     }
+
+    getBookById(id:string):Book | undefined{
+        let book=bookRepository.getBookById(id);
+        return book;
+    }
 }

@@ -29,6 +29,10 @@ export class BookController {
     const requestedBooks: Book[]=bookService.getAllBooks()
     return res.status(200).json(requestedBooks)
 }
+    getBookById=(req:Request,res:Response)=>{
+        const bookId:string=req.params.bookid
+        const book:Book | undefined=bookService.getBookById(bookId)
+        return res.status(200).json(book)
 
 }
-
+}
