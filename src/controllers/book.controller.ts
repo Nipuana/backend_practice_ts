@@ -2,10 +2,11 @@ import {Request,Response} from "express"
 import { z } from "zod";
 import { createBookDTO } from "../dtos/book.dtos"
 import { Book } from "../types/book.type"
-import books from "../repository/book.repository";
+import { BookService } from "../services/book.service";
+//Service implementation is to be used in controller
 
 
-
+let bookService = new BookService()
 // export type Book={
 //     id:string,title:string,date?:string
 // }
@@ -31,7 +32,7 @@ export class BookController {
         
         
         
-        const checkId: boolean = books.some((book)=>book.id===id)
+        const checkId: boolean = boo.some((book)=>book.id===id)
         if(checkId){
             return res.status(409).json({message:"Book with this ID already exists"})
         }
@@ -41,7 +42,7 @@ export class BookController {
     }
    
     getBooks=(req:Request,res:Response)=>{
-    const requestedBooks: Book[]=books
+    const requestedBooks: Book[]=bookService.getAllBooks()
     return res.status(200).json(requestedBooks)
 }
 
