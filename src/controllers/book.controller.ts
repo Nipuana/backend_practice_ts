@@ -21,24 +21,9 @@ export class BookController {
             return res.status(400).json({errors: parsedBook.error})
         }
         const {id,title}= req.body //destructure
-        
-        
-        // if(!title){
-        //     return res.status(400).json({message:"Title is required"})
-        // }
-        // if(!id){
-        //     return res.status(400).json({message:"ID is required"})
-        // }
-        
-        
-        
-        const checkId: boolean = boo.some((book)=>book.id===id)
-        if(checkId){
-            return res.status(409).json({message:"Book with this ID already exists"})
-        }
-        const newbook: Book={id, title};
-        books.push(newbook)
-        return res.status(201).json(newbook)
+
+        const newBook: Book =bookService.createBook({id,title}) 
+        return res.status(201).json(newBook)
     }
    
     getBooks=(req:Request,res:Response)=>{
