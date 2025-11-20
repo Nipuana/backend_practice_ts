@@ -2,6 +2,7 @@ import {Request,Response} from "express"
 import { z } from "zod";
 import { createBookDTO } from "../dtos/book.dtos"
 import { Book } from "../types/book.type"
+import books from "../repository/book.repository";
 
 
 
@@ -9,11 +10,7 @@ import { Book } from "../types/book.type"
 //     id:string,title:string,date?:string
 // }
 
-let  books:Book[]=[
-    {id:'0-1',title:"Aauish"},
-    {id:'0-2',title:"Sujul"},
-    {id:'0-3',title:"Potter",date:"2024-10-10"}
-]
+
 export class BookController {
     createBook(req:Request,res:Response){
 
