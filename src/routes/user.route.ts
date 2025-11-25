@@ -13,8 +13,6 @@ router.get('/g',userController.getUsers );
 // GET single user - 
 router.get('/g/:id', userController.getUserById );
 
-
-
 // PUT update user - 
 router.put('/api/users/:id',userController.putUser);
 
