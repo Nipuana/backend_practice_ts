@@ -1,5 +1,7 @@
 
 import { Request, Response } from 'express';
+import { createUserDTO } from '../dtos/user.dtos';
+import { User } from '../types/user.type';
 
 // In-memory storage - 
 let users: any[] = [
