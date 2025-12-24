@@ -2,7 +2,6 @@
 import { Request, Response } from 'express';
 import { createUserDTO } from '../dtos/user.dtos';
 import { User } from '../types/user.type';
-import { BookService } from '../services/book.service';
 import { UserService } from '../services/user.service';
 
 let userService = new UserService();

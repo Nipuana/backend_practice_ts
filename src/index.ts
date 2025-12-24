@@ -1,4 +1,10 @@
 import express,{Application,Request,Response} from 'express';
+import { connectDB } from './database/mongodb';
+import dotenv from 'dotenv'
+dotenv.config();
+console.log(process.env.PORT);
+//.env->PORT = 5050
+
 import bookRoutes from './routes/book.route'
 import userRoutes from './routes/user.route'
 
@@ -11,7 +17,14 @@ app.get('/',(req:Request,res:Response)=>{
 app.use('/api/books',bookRoutes)
 app.use('/api/users',userRoutes)
 
-app.listen(PORT,()=>{
+async function startServer(){
+    await connectDB();
+    app.listen(PORT,()=>{
     console.log(`Server is running at http://localhost:${PORT}`);
 });
+}
+
+startServer()
+
+
 
