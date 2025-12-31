@@ -1,4 +1,4 @@
-import { AuthService } from "../services/auth.services";
+import { AuthService } from "../services/auth.service";
 import { CreateUserDto } from "../dtos/auth.dtos";
 import  z, { success } from "zod";
 import { Request, Response } from "express";
@@ -19,7 +19,7 @@ export class AuthController{
             return res.status(201).json({
                 success:true, data: newUser, message:" Registered Successfully"}
             )}catch( error:Error | any){ 
-            return res.status(500).json(
+            return res.status(error.statusCode).json(
                 {success:false, message: error.message || "Internal Server Error"});
             }
     }

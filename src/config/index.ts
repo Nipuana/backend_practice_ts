@@ -10,6 +10,9 @@ export const PORT: number =
 export const MONGO_URI: string =
     process.env.MONGO_URI || 'mongodb://localhost:27017/bend_prac';
 
+export const JWT_SECRET: string =
+    process.env.JWT_SECRET || 'defaultsecret';
+
 // fallback ot local mongo db if env is missing
 
 // Application level CONSTANTS

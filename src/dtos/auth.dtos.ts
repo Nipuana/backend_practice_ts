@@ -1,5 +1,5 @@
 import z from "zod";
-import  {userType, UserType} from "../types/user1.type.js";
+import  {userType, UserType} from "../types/auth.type";
 
 export const CreateUserDto= userType.pick({
    firstName: true,
@@ -20,3 +20,10 @@ export const CreateUserDto= userType.pick({
     }
 )
 export type CreateUserDto = z.infer<typeof CreateUserDto>;
+
+export const LoginUserDto= z.object({
+    email: z.email(),
+    password: z.string().min(6)
+});
+
+export type LoginUserDto= z.infer<typeof LoginUserDto>;
